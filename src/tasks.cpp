@@ -51,18 +51,15 @@ int **allocate_2d_array(int num_rows, int num_cols, int init_value) {
 
 // TODO 3
 bool copy_2d_array(int **arr_2d_source, int **arr_2d_target, int num_rows, int num_cols) {
-	/* копирование одного динамического двумерного массива в другой.
-
-		Гарантируется, что размеры массивов одинаковы.
-		Требуется обрабатывать нулевые указатели (метод должен вернуть значение false и ничего не делать с массивами).
-		Требуется обрабатывать некорректные значения размера массивов (неположительные значения). Возвращается значение false и с массивами ничего не происходит. */
 	if ((num_rows > 0) && (num_rows > 0) && (arr_2d_source != nullptr) && (arr_2d_target != nullptr)) {
 		for (int i = 0; i < num_rows; i++) {
-			copy(arr_2d_source[i], arr_2d_source[i] + num_rows, arr_2d_target[i]);
+			for (int j = 0; j < num_cols; j++) {
+				arr_2d_target[i][j] = arr_2d_source[i][j];
+			}
 		}
 		return true;
 	}
-	else { return false; }
+	return false;
 }
 
 void reverse_1d_array(vector<int> &arr) {
@@ -115,7 +112,7 @@ int *find_max_element(int *arr, int size) {
 	else return nullptr;
 }
 
-// TODO
+
 vector<int> find_odd_numbers(vector<int> &arr) {
 	/*   поиск нечетных чисел в динамическом массиве.
 
