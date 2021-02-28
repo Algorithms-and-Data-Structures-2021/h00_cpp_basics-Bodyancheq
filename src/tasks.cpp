@@ -49,7 +49,6 @@ int **allocate_2d_array(int num_rows, int num_cols, int init_value) {
 	else { return nullptr; }
 }
 
-// TODO 3
 bool copy_2d_array(int **arr_2d_source, int **arr_2d_target, int num_rows, int num_cols) {
 	if ((num_rows > 0) && (num_rows > 0) && (arr_2d_source != nullptr) && (arr_2d_target != nullptr)) {
 		for (int i = 0; i < num_rows; i++) {
@@ -129,18 +128,25 @@ vector<int> find_odd_numbers(vector<int> &arr) {
 
 // TODO
 vector<int> find_common_elements(vector<int> &arr_a, vector<int> &arr_b) {
-	/*   поиск общих элементов двух динамических массивах.
-
-			Каждый из массивов может быть пустым.
-			Требуется вернуть массив, состоящий из общих элементов двух массивов.
-			При отсутствии общих элементов должен вернуться пустой массив.
-*/
 	vector<int> common_array;
+    
+	// сортируем массив
+	int tmp = 0;
 	for (int i = 0; i < arr_a.size(); i++) {
+		for (int j = (arr_a.size() - 1); j >= (i + 1); j--) {
+			if (arr_a[j] < arr_a[j - 1]) {
+				tmp = arr_a[j];
+				arr_a[j] = arr_a[j - 1];
+				arr_a[j - 1] = tmp;
+			}
+		}
+	}
+
+	for (int i = 0; i < arr_a.size(); i++) {
+		if ((i > 0) && (arr_a[i] == arr_a[i - 1])) { continue; }
 		for (int j = 0; j < arr_b.size(); j++) {
 			if (arr_a[i] == arr_b[j]) {
 				common_array.push_back(arr_a[i]);
-				arr_b[j] = NULL;
 				break;
 			}
 		}

@@ -5,39 +5,27 @@
 using namespace std;
 
 int main() {
-	int num_rows = 3;
-	int num_cols = 7;
-	// [указатель 0, указатель 1, указатель 2]
-	int **array_2d1 = new int *[num_rows];
-	for (int row_index = 0; row_index < num_rows; ++row_index) {
-		array_2d1[row_index] = new int[num_cols] {1, 1, 1, 1, 1, 1, 1};  // с инициализацией
-	}
-	
-	int **array_2d2 = new int *[num_rows];
-	for (int row_index = 0; row_index < num_rows; ++row_index) {
-		array_2d2[row_index] = new int[num_cols];
-	}
+	vector<int> arr_a;
+	arr_a.push_back(1);
+	arr_a.push_back(3);
+	arr_a.push_back(2);
+	arr_a.push_back(2);
+	arr_a.push_back(1);
 
-	copy_2d_array(array_2d1, array_2d2, num_rows, num_cols);
+	vector<int> arr_b;
+	arr_b.push_back(1);
+	arr_b.push_back(2);
+	arr_b.push_back(3);
+	arr_b.push_back(5);
+
+
+	vector<int> arr = find_common_elements(arr_a, arr_b);
 	
-	for (int row_index = 0; row_index < num_rows; row_index++) {
-		for (int column_index = 0; column_index < num_cols; column_index++) {
-			cout << array_2d2[row_index][column_index] << '\t';
-		}
-		cout << endl;
+	for (auto x : arr) {
+		cout << x << '\t';
 	}
 	
-	
-	for (int row_index = 0; row_index < num_rows; row_index++) {
-		delete[] array_2d1[row_index];
-	}
-	for (int row_index = 0; row_index < num_rows; row_index++) {
-		delete[] array_2d2[row_index];
-	}
-	
-	int x;
-	cin >> x;
-	delete[] array_2d1;
-	delete[] array_2d2;
+	int y;
+	cin >> y;
     return 0;
 }
